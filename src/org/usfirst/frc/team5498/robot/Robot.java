@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.Timer;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	private TalonSRX _talonLeft = new TalonSRX(0);
+private TalonSRX _talonLeft = new TalonSRX(0);
 	private TalonSRX _talonRight = new TalonSRX(1);
 	private TalonSRX _talonRight2 = new TalonSRX(3);
 	private TalonSRX _talonLeft2 = new TalonSRX(4);		
