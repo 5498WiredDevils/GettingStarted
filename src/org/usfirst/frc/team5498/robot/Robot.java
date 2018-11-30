@@ -37,6 +37,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		System.out.println("Initialize robot");
 	}
 
 	/**
@@ -86,6 +87,7 @@ public class Robot extends IterativeRobot {
 		
 		_talonLeft.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, +turn);
 		_talonRight.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, -turn);
+		System.out.print("Set left and right motors.");
 	}
 	
 	double Deadband(double value) {
