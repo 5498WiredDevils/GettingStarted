@@ -26,10 +26,12 @@ import edu.wpi.first.wpilibj.Timer;
  * directory.
  */
 public class Robot extends IterativeRobot {
-private TalonSRX _talonLeft = new TalonSRX(0);
+	private TalonSRX _talonLeft = new TalonSRX(0);
 	private TalonSRX _talonRight = new TalonSRX(1);
-	private TalonSRX _talonRight2 = new TalonSRX(3);
-	private TalonSRX _talonLeft2 = new TalonSRX(4);		
+
+//	private TalonSRX _talonRight = new TalonSRX(4);
+//	private TalonSRX _talonRight2 = new TalonSRX(5);
+//	private TalonSRX _talonLeft2 = new TalonSRX(3);		
 	private Joystick m_stick = new Joystick(0);
 	private Timer m_timer = new Timer();
 
@@ -81,13 +83,17 @@ private TalonSRX _talonLeft = new TalonSRX(0);
 	public void teleopPeriodic() {
 		// This won't work with Talon SRX
 //		m_robotDrive.arcadeDrive(m_stick.getY(), m_stick.getX());
-		double forward = -1 * m_stick.getY();
-		double turn = m_stick.getX();
-		forward = Deadband(forward);
-		turn = Deadband(turn);
+		double forward = m_stick.getRawAxis(0);
+		double turn = m_stick.getRawAxis(1);
+		System.out.print("turn val: ");
+		System.out.println(turn);
+//		forward = Deadband(forward);
+//		turn = Deadband(turn);
 		
-		_talonLeft.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, +turn);
-		_talonRight.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, -turn);
+		_talonLeft.set(ControlMode.Follower, -forward -turn);
+//		_talonLeft2.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, +turn);
+		_talonRight.set(ControlMode.Follower, forward +turn);
+//		_talonRight2.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, -turn);
 	}
 	
 	double Deadband(double value) {
@@ -111,19 +117,19 @@ private TalonSRX _talonLeft = new TalonSRX(0);
 	public void testPeriodic() {
 	}
 
-	public TalonSRX get_talonRight2() {
-		return _talonRight2;
-	}
+//	public TalonSRX get_talonRight2() {
+//		return _talonRight2;
+//	}
+//
+//	public void set_talonRight2(TalonSRX _talonRight2) {
+//		this._talonRight2 = _talonRight2;
+//	}
 
-	public void set_talonRight2(TalonSRX _talonRight2) {
-		this._talonRight2 = _talonRight2;
-	}
-
-	public TalonSRX get_talonLeft2() {
-		return _talonLeft2;
-	}
-
-	public void set_talonLeft2(TalonSRX _talonLeft2) {
-		this._talonLeft2 = _talonLeft2;
-	}
+//	public TalonSRX get_talonLeft2() {
+//		return _talonLeft2;
+//	}
+//
+//	public void set_talonLeft2(TalonSRX _talonLeft2) {
+////		this._talonLeft2 = _talonLeft2;
+//	}
 }
