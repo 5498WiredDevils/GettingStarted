@@ -29,9 +29,11 @@ public class Robot extends IterativeRobot {
 	private TalonSRX _talonLeft = new TalonSRX(0);
 	private TalonSRX _talonRight = new TalonSRX(1);
 
+
 //	private TalonSRX _talonRight = new TalonSRX(4);
 //	private TalonSRX _talonRight2 = new TalonSRX(5);
 //	private TalonSRX _talonLeft2 = new TalonSRX(3);		
+
 	private Joystick m_stick = new Joystick(0);
 	private Timer m_timer = new Timer();
 
@@ -41,6 +43,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		System.out.println("Initialize robot");
 	}
 
 	/**
@@ -83,13 +86,15 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		// This won't work with Talon SRX
 //		m_robotDrive.arcadeDrive(m_stick.getY(), m_stick.getX());
+
 		double forward = m_stick.getRawAxis(0);
 		double turn = m_stick.getRawAxis(1);
 		System.out.print("turn val: ");
 		System.out.println(turn);
 //		forward = Deadband(forward);
 //		turn = Deadband(turn);
-		
+
+
 		_talonLeft.set(ControlMode.Follower, -forward -turn);
 //		_talonLeft2.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, +turn);
 		_talonRight.set(ControlMode.Follower, forward +turn);
@@ -132,4 +137,5 @@ public class Robot extends IterativeRobot {
 //	public void set_talonLeft2(TalonSRX _talonLeft2) {
 ////		this._talonLeft2 = _talonLeft2;
 //	}
+
 }
